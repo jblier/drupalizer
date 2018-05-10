@@ -14,7 +14,7 @@ def docker_ps(running_only=False):
     lines = result.stdout.splitlines()
     # container name is supposed to be the last column
     assert lines[0].strip().endswith('NAMES')
-    return [line.strip().split(' ')[-1] for line in lines[1:]]
+    return [line.decode('utf-8').strip().split(' ')[-1] for line in lines[1:]]
 
 
 def docker_tryrun(imgname, containername=None, opts='', mounts=None, cmd='', restart=True):
